@@ -1,6 +1,4 @@
-﻿using projektObiektowy;
-
-namespace MyNamespace;
+﻿namespace projektObiektowy;
 
 class Program
 {
@@ -13,10 +11,10 @@ class Program
         DeviceInterface projector = new DeviceInterface("Projector", Availability.Available);
         DeviceInterface camera = new DeviceInterface("Camera", Availability.Available);
         
-        Console.WriteLine(student.Name + " " + student.Surname + ", user type: " + student.UserType);
-        Console.WriteLine(employee.Name + " " + employee.Surname + ", user type: " + employee.UserType);
-        Console.WriteLine("Device " + laptop.Name + " is " + laptop.Availability);
-        Console.WriteLine("Device " + projector.Name + " is " + projector.Availability);
-        Console.WriteLine("Device " + camera.Name + " is " + camera.Availability);
+        Console.WriteLine($"{student.Name} {student.Surname}, user type: {student.UserType} with id: {student.Id}");
+        Console.WriteLine($"{employee.Name} {employee.Surname}, user type: {employee.UserType} with id: {employee.Id}");
+        Console.WriteLine($"Device {laptop.Name} is {laptop.Availability} with id: {laptop.Id}");
+        Console.WriteLine($"Device {projector.Name} is  {projector.Availability} with id: {projector.Id}");
+        Console.WriteLine($"Device {camera.Name} is {camera.Availability} with id: {camera.Id}");
     }
 }

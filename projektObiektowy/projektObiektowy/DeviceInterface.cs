@@ -2,25 +2,18 @@
 
 public class DeviceInterface
 {
-    private int id;
-    private String name;
-    private Availability availability;
+    private static int _idCounter;
     
-    public DeviceInterface(String name, Availability availability)
-    {
-        this.name = name;
-        this.availability = availability;
-    }
+    public int Id { get; private set; }
+    public string Name { get; set; }
 
-    public string Name
+    public Availability Availability { get; set; }
+    
+    public DeviceInterface(string name, Availability availability)
     {
-        get => name;
-        set => name = value ?? throw new ArgumentNullException(nameof(value));
-    }
-
-    public Availability Availability
-    {
-        get => availability;
-        set => availability = value;
+        _idCounter++;
+        Id = _idCounter;
+        Name = name;
+        Availability = availability;
     }
 }

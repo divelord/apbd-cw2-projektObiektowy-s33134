@@ -2,33 +2,19 @@
 
 public class UserInterface
 {
-    private int id;
-    private String name;
-    private String surname;
-    private String userType;
+    private static int _idCounter;
 
-    public UserInterface(String name, String surname, String userType)
-    {
-        this.name = name;
-        this.surname = surname;
-        this.userType = userType;
-    }
+    public int Id { get; private set; }
+    public string Name { get; set; }
+    public string Surname { get; set; }
+    public string UserType { get; set; }
     
-    public string Name
+    public UserInterface(string name, string surname, string userType)
     {
-        get => name;
-        set => name = value ?? throw new ArgumentNullException(nameof(value));
-    }
-
-    public string Surname
-    {
-        get => surname;
-        set => surname = value ?? throw new ArgumentNullException(nameof(value));
-    }
-
-    public string UserType
-    {
-        get => userType;
-        set => userType = value ?? throw new ArgumentNullException(nameof(value));
+        _idCounter++;
+        Id = _idCounter;
+        Name = name;
+        Surname = surname;
+        UserType = userType;
     }
 }
