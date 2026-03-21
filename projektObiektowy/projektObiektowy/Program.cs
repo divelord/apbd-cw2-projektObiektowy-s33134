@@ -4,17 +4,23 @@ class Program
 {
     static void Main(string[] args)
     {
-        UserInterface student = new UserInterface("Jan", "Kowalski", "student");
-        UserInterface employee = new UserInterface("Maciek", "Nowak", "employee");
+        Student student01 = new Student("Grzegorz", "Abacki", "IT", "magisterka");
+        Student student02 = new Student("Marcin", "Babacki", "SNM", "inżynierka");
+        Employee employee01 = new Employee("Tomasz", "Cabacki", "dr inż.", "Bazy danych");
+        Employee employee02 = new Employee("Adam", "Dabacki", "prof. dr hab.", "Sieci komputerowe");
+        Employee employee03 = new Employee("Krzysztof", "Ebacki", "dr hab.", "Inżynieria oprogramowania");
+        Console.WriteLine($"Student o ID: {student01.Id} {student01.Name} {student01.Surname} studiuje {student01.Major} na {student01.Degree}");
+        Console.WriteLine($"Student o ID: {student02.Id} {student02.Name} {student02.Surname} studiuje {student02.Major} na {student02.Degree}");
+        Console.WriteLine($"Pracownik o ID: {employee01.Id} {employee01.Name} {employee01.Surname} ma tytuł {employee01.Degree} i jest związany z katedrą {employee01.Chair}");
+        Console.WriteLine($"Pracownik o ID: {employee02.Id} {employee02.Name} {employee02.Surname} ma tytuł {employee02.Degree} i jest związany z katedrą {employee02.Chair}");
+        Console.WriteLine($"Pracownik o ID: {employee03.Id} {employee03.Name} {employee03.Surname} ma tytuł {employee03.Degree} i jest związany z katedrą {employee03.Chair}");
         
-        DeviceInterface laptop = new DeviceInterface("Laptop", Availability.Available);
-        DeviceInterface projector = new DeviceInterface("Projector", Availability.Available);
-        DeviceInterface camera = new DeviceInterface("Camera", Availability.Available);
-        
-        Console.WriteLine($"{student.Name} {student.Surname}, user type: {student.UserType} with id: {student.Id}");
-        Console.WriteLine($"{employee.Name} {employee.Surname}, user type: {employee.UserType} with id: {employee.Id}");
-        Console.WriteLine($"Device {laptop.Name} is {laptop.Availability} with id: {laptop.Id}");
-        Console.WriteLine($"Device {projector.Name} is  {projector.Availability} with id: {projector.Id}");
-        Console.WriteLine($"Device {camera.Name} is {camera.Availability} with id: {camera.Id}");
+        Laptop laptop01 = new Laptop("Laptop", Availability.Available, "Windows 11", "Intel i7");
+        Projector projector01 = new Projector("Projector", Availability.Available, 3000, "1920x1080");
+        Camera camera01 = new Camera("Camera", Availability.Available, "APS-C", "Zoom lenses");
+
+        Console.WriteLine($"Urządzenie o ID: {laptop01.Id} {laptop01.Name} z parametrami: {laptop01.OperatingSystem}, {laptop01.Processor} jest {laptop01.Availability}");
+        Console.WriteLine($"Urządzenie o ID: {projector01.Id} {projector01.Name} z parametrami: {projector01.Brightness}, {projector01.Resolution} jest {projector01.Availability}");
+        Console.WriteLine($"Urządzenie o ID: {camera01.Id} {camera01.Name} z parametrami: {camera01.Sensor}, {camera01.Lens} jest {camera01.Availability}");
     }
 }

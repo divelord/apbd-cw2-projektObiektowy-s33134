@@ -2,19 +2,45 @@
 
 public class UserInterface
 {
-    private static int _idCounter;
-
-    public int Id { get; private set; }
+    public string Id { get; protected set; }
     public string Name { get; set; }
     public string Surname { get; set; }
-    public string UserType { get; set; }
     
-    public UserInterface(string name, string surname, string userType)
+    public UserInterface(string name, string surname)
     {
-        _idCounter++;
-        Id = _idCounter;
         Name = name;
         Surname = surname;
-        UserType = userType;
+    }
+}
+
+public class Student : UserInterface
+{
+    private static int _idCounter;
+    public string Major { get; set; }
+    public string Degree { get; set; }
+
+    public Student(string name, string surname, string major, string degree)
+        : base(name, surname)
+    {
+        _idCounter++;
+        Id = "s" + _idCounter;
+        Major = major;
+        Degree = degree;
+    }
+}
+
+public class Employee : UserInterface
+{
+    private static int _idCounter;
+    public string Degree { get; set; }
+    public string Chair { get; set; }
+
+    public Employee(string name, string surname, string degree, string chair)
+        : base(name, surname)
+    {
+        _idCounter++;
+        Id = "e" + _idCounter;
+        Degree = degree;
+        Chair = chair;
     }
 }
