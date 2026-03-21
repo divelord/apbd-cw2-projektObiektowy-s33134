@@ -22,5 +22,14 @@ class Program
         Console.WriteLine($"Urządzenie o ID: {laptop01.Id} {laptop01.Name} z parametrami: {laptop01.OperatingSystem}, {laptop01.Processor} jest {laptop01.Availability}");
         Console.WriteLine($"Urządzenie o ID: {projector01.Id} {projector01.Name} z parametrami: {projector01.Brightness}, {projector01.Resolution} jest {projector01.Availability}");
         Console.WriteLine($"Urządzenie o ID: {camera01.Id} {camera01.Name} z parametrami: {camera01.Sensor}, {camera01.Lens} jest {camera01.Availability}");
+        
+        Rental rental01 = new Rental(student01, laptop01, 14);
+        Console.WriteLine($"Urządzenie o ID: {laptop01.Id} {laptop01.Name} z parametrami: {laptop01.OperatingSystem}, {laptop01.Processor} jest {laptop01.Availability}");
+        Console.WriteLine($"Urządzenie {rental01.LendedDevice.Name} wypożyczono {rental01.Borrower.Name} {rental01.Borrower.Surname} w dniu {rental01.RentalDate.ToShortDateString()} do dnia {rental01.DueDate.ToShortDateString()}");
+        
+        Console.WriteLine($"Czy urządzenie oddano: {rental01.IsReturned} {rental01.ReturnDate?.ToShortDateString()}");
+        rental01.ReturnDate = DateTime.Now;
+        rental01.LendedDevice.Availability = Availability.Available;
+        Console.WriteLine($"Czy urządzenie oddano: {rental01.IsReturned} {rental01.ReturnDate?.ToShortDateString()}");
     }
 }
