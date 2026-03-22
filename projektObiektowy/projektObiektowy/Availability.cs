@@ -3,5 +3,6 @@
 public enum Availability
 {
     Available,
-    NotAvailable
+    NotAvailable,
+    UnderMaintenance
 }

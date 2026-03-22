@@ -19,4 +19,5 @@ public class Rental
     }
 
     public bool IsReturned => ReturnDate.HasValue;
+    public bool ReturnedOnTime => (ReturnDate ?? DateTime.Now) <= DueDate;
 }
