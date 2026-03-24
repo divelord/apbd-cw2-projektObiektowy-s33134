@@ -2,13 +2,13 @@
 
 public class Rental
 {
-    public UserInterface Borrower { get; set; }
+    public IBorrower Borrower { get; set; }
     public DeviceInterface LendedDevice { get; set; }
     public DateTime RentalDate { get; set; }
     public DateTime DueDate { get; set; }
     public DateTime? ReturnDate { get; set; }
 
-    public Rental(UserInterface borrower, DeviceInterface lendedDevice, int days)
+    public Rental(IBorrower borrower, DeviceInterface lendedDevice, int days)
     {
         Borrower = borrower;
         LendedDevice = lendedDevice;
@@ -19,5 +19,5 @@ public class Rental
     }
 
     public bool IsReturned => ReturnDate.HasValue;
-    public bool ReturnedOnTime => (ReturnDate ?? DateTime.Now) <= DueDate;
+    public bool ReturnedOnTime => (ReturnDate?.Date ?? DateTime.Now.Date) <= DueDate.Date;
 }

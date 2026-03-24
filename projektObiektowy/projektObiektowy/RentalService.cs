@@ -3,13 +3,11 @@
 public class RentalService
 {
     private double _totalPenalty = 0.0;
-    private const int StudentLimit = 2;
-    private const int EmployeeLimit = 5;
     private const double DailyPenalty = 5.0;
     private List<Rental> _rentals = new List<Rental>();
     public List<Rental> Rentals => _rentals;
 
-    public void RentDevice(UserInterface user, DeviceInterface device, int days)
+    public void RentDevice(IBorrower user, DeviceInterface device, int days)
     {
         if (device.Availability == Availability.NotAvailable)
         {
@@ -24,15 +22,13 @@ public class RentalService
         }
         
         int countDevices = _rentals.Count(r => r.Borrower == user  && !r.IsReturned);
-        int userLimit = (user is Student) ?  StudentLimit : EmployeeLimit;
 
-        if (countDevices >= userLimit)
+        if (countDevices >= user.RentalLimit)
         {
             Console.WriteLine($"Użytkownik {user.Name} {user.Surname} przekroczył limit aktywnych wypożyczeń");
             return;
         }
 
-        device.Availability = Availability.NotAvailable;
         Rental rental = new Rental(user, device, days);
         _rentals.Add(rental);
 
@@ -52,7 +48,7 @@ public class RentalService
 
             if (!rental.ReturnedOnTime)
             {
-                int daysDelayed = (rental.ReturnDate.Value - rental.DueDate).Days;
+                int daysDelayed = (rental.ReturnDate.Value.Date - rental.DueDate.Date).Days;
 
                 penalty = daysDelayed * DailyPenalty;
                 _totalPenalty += penalty;
@@ -121,7 +117,7 @@ public class RentalService
         }
     }
 
-    public void ShowActiveDevices(UserInterface user)
+    public void ShowActiveDevices(IBorrower user)
     {
         Console.WriteLine($"Wypożyczone urządzenia użytkownika {user.Name} {user.Surname}");
         

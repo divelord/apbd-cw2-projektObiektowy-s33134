@@ -13,11 +13,12 @@ public class UserInterface
     }
 }
 
-public class Student : UserInterface
+public class Student : UserInterface, IBorrower
 {
     private static int _idCounter;
     public string Major { get; set; }
     public string Degree { get; set; }
+    public int RentalLimit => 2;
 
     public Student(string name, string surname, string major, string degree)
         : base(name, surname)
@@ -29,11 +30,12 @@ public class Student : UserInterface
     }
 }
 
-public class Employee : UserInterface
+public class Employee : UserInterface, IBorrower
 {
     private static int _idCounter;
     public string Degree { get; set; }
     public string Chair { get; set; }
+    public int RentalLimit => 5;
 
     public Employee(string name, string surname, string degree, string chair)
         : base(name, surname)
