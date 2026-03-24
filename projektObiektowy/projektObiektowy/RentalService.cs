@@ -69,6 +69,20 @@ public class RentalService
         }
     }
 
+    public void UpdateRentalDueDate(DeviceInterface device, int days)
+    {
+        var addDays = _rentals.FirstOrDefault(r => r.LendedDevice == device && !r.IsReturned);
+
+        if (addDays != null)
+        {
+            addDays.DueDate = DateTime.Now.AddDays(days);
+        }
+        else
+        {
+            Console.WriteLine($"Na urządzeniu {device.Name} nie można testować oddania po terminie");
+        }
+    }
+
     public void MarkAsUnderMaintenance(DeviceInterface device, string reason)
     {
         device.Availability = Availability.UnderMaintenance;

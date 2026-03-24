@@ -86,9 +86,12 @@ class Program
         Console.WriteLine();
         
         // zwrot po terminie
-        var addDays = rentalService.Rentals.FirstOrDefault(r => r.LendedDevice == allDevices[1]);
-        addDays?.DueDate = DateTime.Now.AddDays(-3);
+        rentalService.UpdateRentalDueDate(allDevices[1], -10);
         rentalService.ReturnDevice(allDevices[1]);
+        Console.WriteLine();
+        
+        // próba testu oddanie po terminie na urządzeniu niewypożyczonym
+        rentalService.UpdateRentalDueDate(allDevices[29], -10);
         Console.WriteLine();
         
         // niewypożyczonego sprzętu
@@ -105,9 +108,7 @@ class Program
         
         // lista przeterminowanych wypożyczeń
 
-        addDays = rentalService.Rentals.FirstOrDefault(r => r.LendedDevice == allDevices[7]);
-        addDays?.DueDate = DateTime.Now.AddDays(-5);
-
+        rentalService.UpdateRentalDueDate(allDevices[7], -5);
         rentalService.ShowOverdueDevices();
         Console.WriteLine();
 
